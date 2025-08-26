@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Computer Diploma Student</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  :root {
+    --primary: #1abc9c;
+    --bg-dark: #0f0f0f;
+    --bg-light: #1a1a1a;
+    --text: #f5f5f5;
+    --muted: #aaa;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body { background: var(--bg-dark); color: var(--text); line-height: 1.6; }
+
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    z-index: 1000;
+  }
+
+  nav h1 { color: var(--primary); font-size: 22px; }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    position: relative;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    padding: 5px;
+    position: relative;
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  nav ul li a:hover { color: var(--primary); transform: scale(1.1); }
+
+  .nav-underline {
+    position: absolute;
+    bottom: -5px; left: 0;
+    height: 3px; width: 0;
+    background: var(--primary);
+    transition: all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);
+  }
+
+  /* Hamburger Menu */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background: var(--primary);
+    transition: all 0.3s;
+  }
+
+  nav ul.mobile-active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 0;
+    background: #000;
+    width: 200px;
+    padding: 20px;
+    gap: 15px;
+    border-radius: 8px;
+  }
+
+  /* Sections */
+  section { padding: 100px 60px; min-height: 90vh; }
+  h2 { text-align: center; font-size: 26px; margin-bottom: 40px; color: var(--primary); }
+  .alt-bg { background: var(--bg-light); }
+
+  /* Hero/Profile */
+  .hero { margin-top: 100px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 40px; }
+  .hero-text { flex: 1; }
+  .hero-text h2 { font-size: 36px; color: var(--primary); }
+  .hero-text p { font-size: 18px; color: var(--muted); margin-top: 10px; }
+  .hero img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 5px solid var(--primary); box-shadow: 0 0 20px rgba(26,188,156,0.6); cursor: pointer; animation: float 3s ease-in-out infinite; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+  .hero img:hover { transform: scale(1.1); box-shadow: 0 0 35px rgba(26,188,156,1); }
+  .hero img:active { animation: pulse 0.6s ease; }
+  @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+  @keyframes pulse { 0%{transform:scale(1);}50%{transform:scale(1.15);}100%{transform:scale(1);} }
+
+  /* About Features */
+  .about p { max-width: 700px; margin:auto; text-align:center; font-size:17px; color: var(--muted); }
+  .features { display:flex; justify-content:center; flex-wrap:wrap; gap:25px; margin-top:30px; }
+  .feature { background:#1f1f1f; padding:20px; border-radius:8px; text-align:center; width:220px; box-shadow:0 4px 8px rgba(0,0,0,0.6); transition:transform 0.3s,box-shadow 0.3s; }
+  .feature:hover { transform:translateY(-6px); box-shadow:0 8px 16px rgba(26,188,156,0.4); border:1px solid var(--primary); }
+
+  /* Skills */
+  .skills { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
+  .skill { background:#1f1f1f; padding:18px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.6); text-align:center; width:180px; transition:0.3s; }
+  .skill:hover { transform:translateY(-6px); box-shadow:0 8px 16px rgba(26,188,156,0.4); border:1px solid var(--primary); }
+
+  /* Education */
+  .education { display:flex; justify-content:center; flex-wrap:wrap; gap:25px; margin-top:30px; }
+  .edu-card { background:#1f1f1f; padding:20px; border-radius:8px; width:220px; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.6); transition:0.3s; }
+  .edu-card:hover { transform:translateY(-6px); box-shadow:0 8px 16px rgba(26,188,156,0.4); border:1px solid var(--primary); }
+  .edu-card h3 { color:var(--primary); margin-bottom:10px; }
+
+  /* Projects */
+  .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+  .project { background:#1f1f1f; padding:20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.6); transition:0.3s; }
+  .project:hover { transform:translateY(-6px); box-shadow:0 8px 16px rgba(26,188,156,0.4); border:1px solid var(--primary); }
+  .project h3 { color:var(--primary); margin-bottom:10px; }
+
+  /* Contact */
+  .contact { text-align:center; }
+  .contact-icons { display:flex; justify-content:center; gap:30px; margin-top:20px; }
+  .contact-icons a { text-decoration:none; font-size:30px; color:var(--primary); transition:0.3s; }
+  .contact-icons a:hover { color:#16a085; transform:scale(1.2); }
+
+  /* Footer */
+  footer { background:#000; text-align:center; padding:15px; color:var(--muted); font-size:14px; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav { padding: 15px 30px; }
+    .hero { flex-direction: column; text-align: center; }
+    .hero img { margin: 20px 0 0 0; }
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display:flex; }
+    nav ul { display:none; gap: 0; }
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <h1>My Portfolio</h1>
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <ul id="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <div class="nav-underline"></div>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <h2>Hello, I'm Jane Doe</h2>
+    <p>Computer Diploma Student | Aspiring Developer</p>
+  </div>
+  <img src="https://via.placeholder.com/200" alt="Profile Photo" id="profile-photo">
+</section>
+
+<!-- About -->
+<section id="about" class="about alt-bg">
+  <h2>About Me</h2>
+  <p>
+    Passionate Computer Diploma student with skills in programming, web development, and AI projects. I build modern applications and focus on practical learning.
+  </p>
+  <div class="features">
+    <div class="feature">
+      <i class="fas fa-code" style="font-size:24px;color:var(--primary)"></i>
+      <h3>Programming</h3>
+      <p>C, Python, JavaScript for real-world applications</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-laptop-code" style="font-size:24px;color:var(--primary)"></i>
+      <h3>Web Development</h3>
+      <p>Responsive websites & interactive web applications</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-robot" style="font-size:24px;color:var(--primary)"></i>
+      <h3>AI & Projects</h3>
+      <p>Intelligent applications & hands-on projects</p>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill">C Programming</div>
+    <div class="skill">Python</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">HTML & CSS</div>
+    <div class="skill">Web Development</div>
+    <div class="skill">Database Basics</div>
+  </div>
+</section>
+
+<!-- Education -->
+<section id="education" class="alt-bg">
+  <h2>Education</h2>
+  <div class="education">
+    <div class="edu-card">
+      <h3>Diploma in Computer Engineering</h3>
+      <p>XYZ Institute | 2022-2025</p>
+    </div>
+    <div class="edu-card">
+      <h3>Higher Secondary</h3>
+      <p>ABC Junior College | 2020-2022</p>
+    </div>
+    <div class="edu-card">
+      <h3>High School</h3>
+      <p>DEF High School | 2018-2020</p>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project">
+      <h3>Portfolio Website</h3>
+      <p>Responsive portfolio website built using HTML, CSS, and JS.</p>
+    </div>
+    <div class="project">
+      <h3>AI Chatbot</h3>
+      <p>Python-based chatbot using NLP techniques and APIs.</p>
+    </div>
+    <div class="project">
+      <h3>Task Management App</h3>
+      <p>Web application to manage daily tasks using JS and Firebase.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <div class="contact-icons">
+    <a href="mailto:yourname@email.com"><i class="fas fa-envelope"></i></a>
+    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Computer Diploma Portfolio | Designed Professionally</p>
+</footer>
+
+<script>
+  const navLinks = document.querySelectorAll('#nav-links li a');
+  const underline = document.querySelector('.nav-underline');
+  const sections = document.querySelectorAll('section');
+  const hamburger = document.getElementById('hamburger');
+  const navUl = document.getElementById('nav-links');
+
+  // Hamburger toggle
+  hamburger.addEventListener('click', () => {
+    navUl.classList.toggle('mobile-active');
+  });
+
+  // Navbar underline on click
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const rect = this.getBoundingClientRect();
+      const parentRect = this.parentElement.parentElement.getBoundingClientRect();
+      underline.style.width = rect.width + 'px';
+      underline.style.left = (rect.left - parentRect.left) + 'px';
+      if(navUl.classList.contains('mobile-active')) navUl.classList.remove('mobile-active');
+    });
+  });
+
+  // Initial underline
+  window.addEventListener('load', () => {
+    const first = navLinks[0];
+    const rect = first.getBoundingClientRect();
+    const parentRect = first.parentElement.parentElement.getBoundingClientRect();
+    underline.style.width = rect.width + 'px';
+    underline.style.left = (rect.left - parentRect.left) + 'px';
+  });
+
+  // Scroll-activated underline
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 80;
+      if(scrollY >= sectionTop) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if(link.getAttribute('href').includes(current)){
+        link.classList.add('active');
+        const rect = link.getBoundingClientRect();
+        const parentRect = link.parentElement.parentElement.getBoundingClientRect();
+        underline.style.width = rect.width + 'px';
+        underline.style.left = (rect.left - parentRect.left) + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
