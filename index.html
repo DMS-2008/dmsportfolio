@@ -378,7 +378,7 @@
 
     .contact0-icons a {
       text-decoration: none;
-      font-size: 30px;
+      font-size: 35px;
       color: var(--primary);
       transition: 0.3s;
     }
@@ -439,6 +439,16 @@
       white-space: nowrap;
       border: 0;
     }
+
+    .actions-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      /* space between button and icons */
+      margin-top: 15px;
+      flex-wrap: wrap;
+      /* allows wrapping on small screens */
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -470,14 +480,18 @@
       <h2>Hello, I'm Mohan Sandeep</h2>
       <p>Computer Diploma Student | Aspiring Developer</p>
 
-      <!-- Contact under name -->
-      <div class="contact0-icons">
-        <a href="mailto:dasumohansandeep@email.com"><i class="fas fa-envelope"></i><span
-            class="sr-only">Email</span></a>
-        <a href="https://www.linkedin.com/in/mohan-sandeep-2a07012b8/" target="_blank"><i
-            class="fab fa-linkedin"></i><span class="sr-only">LinkedIn</span></a>
-        <a href="https://github.com/DMS-2008" target="_blank"><i class="fab fa-github"></i><span
-            class="sr-only">GitHub</span></a>
+      <div class="actions-row">
+        <a href="#projects" class="btn">View Projects</a>
+
+        <!-- Contact under name -->
+        <div class="contact0-icons">
+          <a href="mailto:dasumohansandeep@email.com"><i class="fas fa-envelope"></i><span
+              class="sr-only">Email</span></a>
+          <a href="https://www.linkedin.com/in/mohan-sandeep-2a07012b8/" target="_blank"><i
+              class="fab fa-linkedin"></i><span class="sr-only">LinkedIn</span></a>
+          <a href="https://github.com/DMS-2008" target="_blank"><i class="fab fa-github"></i><span
+              class="sr-only">GitHub</span></a>
+        </div>
       </div>
     </div>
     <img src="images/zoroprofile.jpg" alt="Profile Photo" id="profile-photo">
